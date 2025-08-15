@@ -1,26 +1,24 @@
 import React from "react"
 
 export type CardProps = {
-  day: number
-  temperature: number
-  code: string
-  index: number
-  setSelectedDay(day: number): void
+  day: string; // ✅ string instead of number
+  temperature: number;
+  code: string;
+  index: number;
+  setSelectedDay(day: number): void;
 }
-
-const Days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
 
 export default function Card({ temperature, day, code, index, setSelectedDay }: CardProps) {
   const handleClick = () => {
-    setSelectedDay(index)
-  }
+    setSelectedDay(index);
+  };
 
   return (
     <div
-      className="w-[225px] h-[250px] border-[1px] border-slate-800 dark:border-slate-200 rounded-xl p-4 flex flex-col cursor-pointer hover:scale-105  hover:shadow-xl transition-transform"
+      className="w-[225px] h-[250px] border border-slate-800 dark:border-slate-200 rounded-xl p-4 flex flex-col cursor-pointer hover:scale-105 hover:shadow-xl transition-transform"
       onClick={handleClick}
     >
-      <div className="text-lg font-bold text-slate-800 dark:text-slate-200">{Days[day]}</div>
+      <div className="text-lg font-bold text-slate-800 dark:text-slate-200">{day}</div>
       <div className="text-center my-auto">
         <i className={`wi wi-owm-${code} text-slate-800 dark:text-slate-200 text-7xl`}></i>
       </div>
@@ -36,5 +34,5 @@ export default function Card({ temperature, day, code, index, setSelectedDay }: 
         {temperature}°
       </div>
     </div>
-  )
+  );
 }
