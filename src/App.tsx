@@ -13,7 +13,7 @@ export type AppContextProps = {
 
 export const AppContext = React.createContext({} as AppContextProps);
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://weather-react-project-b0at.onrender.com";
 
 /** ---------- date helpers (robust to string/number/Date) ---------- */
 function parseDate(input: unknown): Date | null {

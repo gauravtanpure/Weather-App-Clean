@@ -6,7 +6,7 @@ interface LoginProps {
   onRegisterClick: () => void;
 }
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://weather-react-project-b0at.onrender.com";
 
 export default function Login({ onLogin, onRegisterClick }: LoginProps): JSX.Element {
   const themeContext = React.useContext(ThemeContext);
