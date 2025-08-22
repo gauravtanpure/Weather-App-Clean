@@ -24,10 +24,12 @@ export default function Login({ onLogin, onRegisterClick }: LoginProps): JSX.Ele
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setLoading(true); // Start loading
 
     try {
       const res = await fetch(`${API_BASE}/auth/login`, {
@@ -45,6 +47,8 @@ export default function Login({ onLogin, onRegisterClick }: LoginProps): JSX.Ele
       onLogin({ name: data.name, token: data.access_token });
     } catch (err: any) {
       setError(err.message);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -93,9 +97,10 @@ export default function Login({ onLogin, onRegisterClick }: LoginProps): JSX.Ele
           </div>
           <button
             type="submit"
+            disabled={loading}
             className="w-full px-6 py-4 font-bold text-white transition duration-300 ease-in-out bg-indigo-600 rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Sign In
+            {loading ? "Logging in..." : "Sign In"}
           </button>
         </form>
         <p className="mt-8 text-sm text-center text-gray-500 dark:text-gray-400">
